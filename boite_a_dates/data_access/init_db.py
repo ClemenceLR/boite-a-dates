@@ -8,7 +8,7 @@ def init_db_script():
             create_db = f
 
         connection = sqlite3.connect('./database/boite_a_dates.db')
-        for file in ['script_db.sql', 'insert_data.sql', 'insert_images.sql']:
+        for file in ['script_db.sql', 'insert_data.sql']:
             with open('./database/' + file) as f: #creating db file
                 connection.executescript(f.read())
         connection.commit()

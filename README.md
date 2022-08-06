@@ -10,3 +10,4 @@ TODO :
 - Créer ses propres catégories ?
 
 - Gérer la sécurité de l'application -> éviter le bot création de compte
+- Empêcher les insertions admin
