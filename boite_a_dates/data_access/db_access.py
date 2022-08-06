@@ -1,7 +1,7 @@
 from flask import g
 import sqlite3
 
-DATA_URL = "./database/double_label_db.db"
+DATA_URL = "./database/boite_a_dates.db"
 
 def get_db():
     if 'db' not in g:
