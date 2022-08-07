@@ -17,5 +17,9 @@ def categories():
 
 @bpapi.route("/pick_card")
 def pick_card():
-    test = pick_card_user()
-    return render_template("card_presenter.html",card = test)
+    card = pick_card_user()
+    return render_template("card_presenter.html",card = card)
+
+@bpapi.route("/test_nav")
+def test_nav():
+    return render_template("nav.html")

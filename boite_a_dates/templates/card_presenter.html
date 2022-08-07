@@ -3,9 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Boite à dates</title>
-    <link href="/static/css/style.css" rel="stylesheet" />
+    <link href="/static/css/card_style.css" rel="stylesheet" />
 </head>
 <body>
+    {% with color=card['color'] %}
+        {% include 'nav.html' %}
+    {% endwith %}
     <div class="card_page">            
         <div class="category">    
                 <div class="round" style="background-color:{{card['category']['color']}}"></div><div class="category_name">{{ card['category']['categories_name'] }}</div>
