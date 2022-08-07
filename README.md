@@ -11,3 +11,4 @@ TODO :
 
 - Gérer la sécurité de l'application -> éviter le bot création de compte
 - Empêcher les insertions admin
+- Améliorer la création de la DB

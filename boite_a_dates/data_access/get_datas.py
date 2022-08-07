@@ -28,11 +28,11 @@ def get_categories_id(id_user=0):
 """
 Return the string of the category name
 """
-def get_category_color(id_category):
+def get_category_card(id_category):
     cursor = get_db().cursor()
-    cursor.execute("SELECT color FROM BD_CATEGORIES WHERE id_categories = '%d'"%(id_category))
+    cursor.execute("SELECT categories_name,color FROM BD_CATEGORIES WHERE id_categories = '%d'"%(id_category))
     for element in cursor.fetchall():
-        return {"color":element["color"]}
+        return {"categories_name":element["categories_name"],"color":element["color"]}
 
 """
 Pick a random card in the user cards list
@@ -47,11 +47,11 @@ def pick_card_user(id_user=0):
     for element in cursor.fetchall():
         cards_pool.append({"name":element["card_text"]})
     
-    category_color = get_category_color(category_picked)
+    category_card = get_category_card(category_picked)
 
     chosen_card = {
-        "categories":get_categories_user(),
+        "category":category_card,
         "card": random.choice(cards_pool)["name"],
-        "color":category_color["color"]
+        "color":category_card["color"]
     }
     return chosen_card

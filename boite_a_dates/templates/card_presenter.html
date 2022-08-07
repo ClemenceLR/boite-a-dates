@@ -6,18 +6,16 @@
     <link href="/static/css/style.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="card_page">
+    <div class="card_page">            
+        <div class="category">    
+                <div class="round" style="background-color:{{card['category']['color']}}"></div><div class="category_name">{{ card['category']['categories_name'] }}</div>
+        </div>
+        <br>
         <div class="card">
             <div class="stick_head" style="background-color:{{card['color']}}"></div>
             <div class="card_content">{{card["card"]}}</div>
          </div>
-        <div class="categories">
-        {% for category in card['categories'] %}
-        <div class="category">    
-            <div class="round" style="background-color:{{category['color']}}"></div><div class="category_name">{{ category['category'] }}</div><br>
-        </div>
-        {% endfor %}
-        </div>
+
 
     </div>
 </body>
