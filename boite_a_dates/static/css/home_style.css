@@ -1,0 +1,30 @@
+.wrapper{
+    text-align: center;
+}
+
+.home_text{
+    margin-top:2%;
+    font-family: cursive;
+}
+
+.categories{
+    border:solid 1px #000;
+    display: inline-grid;
+}
+
+.round{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    border:solid 1px #000;
+ }
+
+ .categories div{
+    position:relative;
+    padding:10px;
+}
+
+.category{
+    font-family: cursive;
+    display: inline-flex;
+}

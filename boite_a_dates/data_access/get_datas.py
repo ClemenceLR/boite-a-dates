@@ -2,9 +2,9 @@ from .db_access import *
 import random
 
 
-def get_categories_user(id_user=0):
+def get_categories_user(id_user=1):
     cursor = get_db().cursor()
-    cursor.execute("SELECT * FROM BD_CATEGORIES WHERE id_user = '%d' and id_user = 0"%(id_user))
+    cursor.execute("SELECT * FROM BD_CATEGORIES WHERE id_user = '%d' or id_user = 1"%(id_user))
     categories_liste = []
 
     for element in cursor.fetchall():
@@ -15,9 +15,9 @@ def get_categories_user(id_user=0):
 """
 Return the id of categories available
 """
-def get_categories_id(id_user=0):
+def get_categories_id(id_user=1):
     cursor = get_db().cursor()
-    cursor.execute("SELECT * FROM BD_CATEGORIES WHERE id_user = '%d' and id_user = 0"%(id_user))
+    cursor.execute("SELECT * FROM BD_CATEGORIES WHERE id_user = '%d' or id_user = 1"%(id_user))
 
     categories_id = []
     for element in cursor.fetchall():
@@ -37,21 +37,35 @@ def get_category_card(id_category):
 """
 Pick a random card in the user cards list
 """
-def pick_card_user(id_user=0):
+def pick_card_user(id_user=1, id_category=1):
     cursor = get_db().cursor()
-    available_id = get_categories_id(id_user)
-    category_picked = random.choice(available_id)
+    print("ID CAT", id_category)
+    if(id_category == -1):
+        print("HERE")
+        available_id = get_categories_id(id_user)
+        print("AVAIL",available_id)
+        category_picked = random.choice(available_id)
+        print(category_picked)
+    else:
+        category_picked = id_category
+        print("CAT PICKED", id_category)
+    
+    print("SELECT card_text FROM BD_CARD where id_user = '%d' and id_categories = '%d'"%(id_user, category_picked))
     cursor.execute("SELECT card_text FROM BD_CARD where id_user = '%d' and id_categories = '%d'"%(id_user, category_picked))
 
     cards_pool = []
     for element in cursor.fetchall():
         cards_pool.append({"name":element["card_text"]})
     
+    print("CARDS POOL", cards_pool)
+    
+    chosen = random.choice(cards_pool)["name"]
+    
     category_card = get_category_card(category_picked)
 
     chosen_card = {
         "category":category_card,
-        "card": random.choice(cards_pool)["name"],
+        "card": chosen,
         "color":category_card["color"]
     }
     return chosen_card

@@ -3,7 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Boite à dates</title>
-    <link href="../static/css/style.css" rel="stylesheet" />
+    <link href="/static/css/home_style.css" rel="stylesheet" />
 </head>
-<body></body>
+<body>
+    {% with color=color %}
+        {% include 'nav.html' %}
+    {% endwith %}
+    <div class="wrapper">
+        <div class="home_text">
+            Bienvenue sur la page d'accueil de la boite à dates !
+        </div>
+
+            <br><br>
+            <div class="categories">
+                {% for category in categories %}
+                <div class="category">    
+                    <div class="round" style="background-color:{{category['color']}}"></div><div class="category_name">{{ category['category'] }}</div><br>
+                </div>
+                {% endfor %}
+            </div>
+    </div>
+</body>
 </html>
