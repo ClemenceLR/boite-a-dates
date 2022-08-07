@@ -1,8 +1,8 @@
-INSERT INTO "BD_CATEGORIES" ("id_categories","categories_name","id_user") VALUES 
-(1,"Et si on sortait ?",0),
-(2,"Coocooning a la maison",0),
-(3, "Miame",0),
-(4, "Enfin les vacances ! / Le Weekend !",0);
+INSERT INTO "BD_CATEGORIES" ("id_categories","categories_name","color","id_user") VALUES 
+(1,"Et si on sortait ?","#32a850",0),
+(2,"Coocooning a la maison","#a83246",0),
+(3, "Miame","#fac507",0),
+(4, "Enfin les vacances ! / Le Weekend !","#0717fa",0);
 
 
 INSERT INTO "BD_USER" ("id_user","login_user","pwd_user" ) VALUES 

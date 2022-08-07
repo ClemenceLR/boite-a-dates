@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify, request
+from flask import Blueprint, request, jsonify, request,render_template
 from flask_cors import cross_origin
 import os 
 from ..data_access.get_datas import get_categories_user,pick_card_user
@@ -15,7 +15,7 @@ def categories():
     categories = get_categories_user()
     return jsonify(categories)
 
-@bpapi.route("/test")
-def test():
+@bpapi.route("/pick_card")
+def pick_card():
     test = pick_card_user()
-    return jsonify(test)
+    return render_template("card_presenter.html",card = test)

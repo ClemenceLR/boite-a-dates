@@ -1,0 +1,53 @@
+.card_page{
+    display: inline-flex;
+}
+
+.card{
+    display:inline-flex;
+}
+
+.stick_head{
+    height:30px;
+    width:50px;
+    border-radius: 20px 0 0 20px;
+}
+
+.card_content{
+    height:30px;
+    width:250px;
+    border-radius:0 20px 20px 0;
+    background-color: bisque;
+    text-align:center;
+}
+
+.categories{
+    border:solid 1px #000;
+    display: grid;
+}
+
+.round{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    border:solid 1px #000;
+ }
+
+ .categories div{
+    position:relative;
+    padding:10px;
+}
+
+.category{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    width: 100%;
+    display:inline-flex;
+}
+
+.category_name{
+    display: inline-block;
+}
+
+
+
+
+

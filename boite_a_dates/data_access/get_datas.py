@@ -8,14 +8,14 @@ def get_categories_user(id_user=0):
     categories_liste = []
 
     for element in cursor.fetchall():
-        categories_liste.append(element["categories_name"])
+        categories_liste.append({"category":element["categories_name"], "color":element["color"]})
 
     return categories_liste
 
 """
 Return the id of categories available
 """
-def get_standard_categories_id(id_user=0):
+def get_categories_id(id_user=0):
     cursor = get_db().cursor()
     cursor.execute("SELECT * FROM BD_CATEGORIES WHERE id_user = '%d' and id_user = 0"%(id_user))
 
@@ -28,17 +28,18 @@ def get_standard_categories_id(id_user=0):
 """
 Return the string of the category name
 """
-def get_category_name(id_category):
+def get_category_color(id_category):
     cursor = get_db().cursor()
-    cursor.execute("SELECT categories_name FROM BD_CATEGORIES WHERE id_categories = '%d'"%(id_category))
-    return cursor.fetchone()[0]
+    cursor.execute("SELECT color FROM BD_CATEGORIES WHERE id_categories = '%d'"%(id_category))
+    for element in cursor.fetchall():
+        return {"color":element["color"]}
 
 """
 Pick a random card in the user cards list
 """
 def pick_card_user(id_user=0):
     cursor = get_db().cursor()
-    available_id = get_standard_categories_id(id_user)
+    available_id = get_categories_id(id_user)
     category_picked = random.choice(available_id)
     cursor.execute("SELECT card_text FROM BD_CARD where id_user = '%d' and id_categories = '%d'"%(id_user, category_picked))
 
@@ -46,10 +47,11 @@ def pick_card_user(id_user=0):
     for element in cursor.fetchall():
         cards_pool.append({"name":element["card_text"]})
     
-    category_name = get_category_name(category_picked)
+    category_color = get_category_color(category_picked)
 
     chosen_card = {
-        "name":category_name,
-        "card": random.choice(cards_pool)["name"]
+        "categories":get_categories_user(),
+        "card": random.choice(cards_pool)["name"],
+        "color":category_color["color"]
     }
     return chosen_card
