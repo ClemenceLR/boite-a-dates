@@ -1,36 +1,36 @@
 body{
-    margin:0;
+  margin:0;
 }
 
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-    font-family: cursive;
-  }
+ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  font-family: cursive;
+}
   
-  li {
-    float: left;
-  }
+li{
+  float: left;
+}
   
-  li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-  }
+li a{
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
   
   /* Change the link color to #111 (black) on hover */
-  li a:hover {
-    background-color:rgba(17,17,17,0.3);
+li a:hover {
+  background-color:rgba(17,17,17,0.3);
     
-  }
+}
 
-  li:nth-child(5), li:nth-child(6){
-    float: right;
-  }
+li:nth-child(5), li:nth-child(6){
+  float: right;
+}  
 
 

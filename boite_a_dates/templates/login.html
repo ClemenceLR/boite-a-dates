@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Boite à dates</title>
+    <link href="/static/css/creation_forms.css" rel="stylesheet" />
+    {{ toastr.include_jquery() }}
+    {{ toastr.include_toastr_css() }}
+    {{ toastr.message() }}
+</head>
+<body>
+    {% with color=color %}
+        {% include 'nav.html' %}
+    {% endwith %}
+
+    {{ toastr.include_toastr_js() }}
+    <form action="{{ url_for('api/v1.create_user') }}" method="post" class="form-card">
+        <div class="text-card">
+            <label class="text-label" form="card_text">Login</label>
+            <input type="text" class="text-card-input" name="card_text" id="card_text" placeholder="" required>
+        </div>
+        <div class="text-card">
+            <label class="text-label" form="card_text">Password</label>
+            <input type="password" class="text-card-input" name="card_text" id="card_text" placeholder="" required>
+        </div>
+        <div class="validate-form">
+            <input type="button" value="Annuler" class="cancel-button" onclick="window.location.href='{{url_for('api/v1.home')}}';">
+
+            <input type="submit" value="Valider" class="validate-button">
+        </div>
+
+    </form>
+
+</body>
+</html>

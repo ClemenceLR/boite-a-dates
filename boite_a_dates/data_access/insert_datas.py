@@ -16,7 +16,18 @@ def insert_category_db(id_user, category_name,color):
     except Exception:
         return -1
 
-def insert_user(login_user, pwd_user):
+def insert_user_db(login_user, pwd_user):
+    try:
+        cursor = get_db().cursor()
+        cursor.execute("INSERT INTO BD_USER (login_user,pwd_user) VALUES ('%s','%s')"%(login_user,pwd_user))
+        get_db().commit()
+    except Exception:
+        return -1
+
+def check_user_login_unicity(login_user):
     cursor = get_db().cursor()
-    cursor.execute("INSERT INTO BD_USER (login_user,pwd_user) VALUES ('%s','%s')"%(login_user,pwd_user))
-    get_db().commit()
+    cursor.execute("SELECT * FROM BD_USER WHERE login_user = '%s'"%(login_user))
+    if(len(cursor.fetchall()) != 0):
+            return -2
+    else:
+        return 1

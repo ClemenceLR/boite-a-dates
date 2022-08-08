@@ -1,8 +1,9 @@
 from flask import Blueprint, request, jsonify, request,render_template, flash
 from flask_cors import cross_origin
+from passlib.hash import sha256_crypt
 import os 
 from ..data_access.get_datas import get_categories_user,pick_card_user
-from ..data_access.insert_datas import insert_card_db, insert_category_db
+from ..data_access.insert_datas import insert_card_db, insert_category_db, insert_user_db, check_user_login_unicity
 
 bpapi = Blueprint('api/v1', __name__, url_prefix='/api/v1')
 
@@ -88,3 +89,28 @@ def insert_category():
         return render_template("home.html", categories = categories, color="#a83246")
     else:
         return render_template("insert_category.html", color="#a83246")
+
+@bpapi.route("/create_user", methods=["GET","POST"])
+def create_user():
+    if request.method == "POST":
+        data = request.form.to_dict()
+        user_login = data["login_text"] #TODO TEST clemence
+        user_pwd = data["pwd_text"] 
+        if(check_user_login_unicity(user_login) != -2):
+            encrypted = sha256_crypt.encrypt(user_pwd)
+            insert_user_db(user_login,encrypted)
+            categories = get_categories_user()
+            print("success")
+            return render_template("home.html", categories = categories, color="#a83246")
+        else:
+            print("failed")
+            flash("This login already exists", "error")
+            return render_template("new_user.html", color="#a83246")
+    else:
+        return render_template("new_user.html", color="#a83246")
+
+@bpapi.route("/login")
+def log_user():
+    user_login = "clemence"
+    user_pwd = "clemence"
+    encrypted = get_user_by_login()
