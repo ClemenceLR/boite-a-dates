@@ -30,9 +30,9 @@ Return the string of the category name
 """
 def get_category_card(id_category):
     cursor = get_db().cursor()
-    cursor.execute("SELECT categories_name,color FROM BD_CATEGORIES WHERE id_categories = '%d'"%(id_category))
+    cursor.execute("SELECT id_categories,categories_name,color FROM BD_CATEGORIES WHERE id_categories = '%d'"%(id_category))
     for element in cursor.fetchall():
-        return {"categories_name":element["categories_name"],"color":element["color"]}
+        return {"id_category": element["id_categories"],"categories_name":element["categories_name"],"color":element["color"]}
 
 """
 Pick a random card in the user cards list
