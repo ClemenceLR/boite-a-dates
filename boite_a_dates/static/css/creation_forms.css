@@ -7,7 +7,6 @@
     padding: 20px;
     position: relative;
     font-family: cursive;
-    text-align: center;
 }
 
 .text-card{
@@ -27,6 +26,10 @@
     border:rgb(217, 192, 192) solid 0.5px;
     border-radius: 5px;
     font-family: cursive;
+}
+
+.color-card-input{
+    width:2%;
 }
 
 .select-cat{

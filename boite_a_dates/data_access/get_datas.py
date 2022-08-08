@@ -17,14 +17,12 @@ Return the id of categories available
 """
 def get_categories_id(id_user=1):
     cursor = get_db().cursor()
-    cursor.execute("SELECT * FROM BD_CATEGORIES WHERE id_user = '%d' or id_user = 1"%(id_user))
-
-    categories_id = []
+    cursor.execute("SELECT distinct id_categories FROM BD_CARD where id_user='%d'"%(id_user))
+    categories_valid = []
     for element in cursor.fetchall():
-        categories_id.append(element["id_categories"])
+        categories_valid.append(element["id_categories"])
 
-    return categories_id
-
+    return categories_valid
 """
 Return the string of the category name
 """
@@ -52,7 +50,9 @@ def pick_card_user(id_user=1, id_category=1):
     cards_pool = []
     for element in cursor.fetchall():
         cards_pool.append({"name":element["card_text"]})
-        
+    
+    if(len(cards_pool) == 0):
+        return -1
     chosen = random.choice(cards_pool)["name"]
     
     category_card = get_category_card(category_picked)

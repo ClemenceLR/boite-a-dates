@@ -10,18 +10,17 @@
         {% include 'nav.html' %}
     {% endwith %}
 
-    <form action="{{ url_for('api/v1.insert_card') }}" method="post" class="form-card">
+    
+    <form action="{{ url_for('api/v1.insert_category') }}" method="post" class="form-card">
         <div class="text-card">
-            <label class="text-label" form="card_text"> Texte de la carte</label>
-            <input type="text" class="text-card-input" name="card_text" id="card_text" placeholder="Entre le texte de ta carte" required>
+            <label class="text-label" form="cat_text"> Texte de la catégorie</label>
+            <input type="text" class="text-card-input" name="cat_text" id="card_text" placeholder="Entre le texte de ta carte" required>
         </div>
-        <select name="category_list" class="select-cat">
-            {% for element in categories %}
-                <option value="{{element['id_cat']}}">
-                    {{element['category']}}
-                </option>
-            {% endfor %}
-        </select>
+        <div class="text-card">
+            <label class="text-label" form="cat_color"> Couleur de la catégorie</label>
+            <input type="color" class="color-card-input" name="cat_color" id="cat_color" required>
+        </div>
+
         <div class="validate-form">
             <input type="button" value="Annuler" class="cancel-button" onclick="window.location.href='{{url_for('api/v1.home')}}';">
 

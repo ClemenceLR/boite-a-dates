@@ -2,7 +2,7 @@ from flask import Blueprint, request, jsonify, request,render_template, flash
 from flask_cors import cross_origin
 import os 
 from ..data_access.get_datas import get_categories_user,pick_card_user
-from ..data_access.insert_datas import insert_card_db
+from ..data_access.insert_datas import insert_card_db, insert_category_db
 
 bpapi = Blueprint('api/v1', __name__, url_prefix='/api/v1')
 
@@ -28,11 +28,21 @@ def pick_card_cat(number=-1):
         request_datas = request.get_json()
         #TODO FORMULAIRE
         card = pick_card_user(1,number)
+        if card == -1:
+            flash("This category has no cards", "error")
+            categories = get_categories_user()
+            return render_template("home.html", categories = categories, color="#a83246")
+
         return render_template("card_presenter.html",card = card)
     else:
         if number != -1:
             card = pick_card_user(1,number)
-            return render_template("card_presenter.html",card = card)
+            if card == -1:
+                flash("This category has no cards", "error")
+                categories = get_categories_user()
+                return render_template("home.html", categories = categories, color="#a83246")
+            else:
+                return render_template("card_presenter.html",card = card)
 
 @bpapi.route("/test_nav")
 def test_nav():
@@ -50,7 +60,7 @@ def insert_card():
         if insert_ret == -1:
             flash("Card creation failed", "error")
         
-        flash("Card was inserted", "success")
+        flash("Card was created", "success")
         categories = get_categories_user()
         return render_template("home.html", categories = categories, color="#a83246")
     else:
@@ -58,3 +68,23 @@ def insert_card():
         categories = get_categories_user(id_user)
         print(categories)
         return render_template("insert_card.html", categories = categories , color="#a83246")
+
+@bpapi.route("/insert_category", methods=["POST", "GET"])
+def insert_category():
+    if request.method == "POST":
+        data = request.form.to_dict()
+        category_name = data["cat_text"] 
+        color = data["cat_color"]
+        id_user = 1
+        print(category_name)
+        print(color)
+
+        insert_ret = insert_category_db(id_user, category_name,color)
+        if insert_ret == -1:
+            flash("Category creation failed", "error")
+        
+        flash("Category was created", "success")
+        categories = get_categories_user()
+        return render_template("home.html", categories = categories, color="#a83246")
+    else:
+        return render_template("insert_category.html", color="#a83246")
