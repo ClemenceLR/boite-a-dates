@@ -43,13 +43,11 @@ def login():
             error = "Incorrrect username"
         elif not sha256_crypt.verify(user_pwd,  user['pwd_user'] ):
             error = "Incorrect password"
-    
         if error is None:
             session.clear()
             session['user_id'] = user['id_user']
             flash("Login success", "success")
-            categories = get_categories_user()
-            print("success")
+            categories = get_categories_user(session['user_id'])
             return render_template("home.html", categories = categories, color="#a83246")
         flash(error)
     return render_template('login.html', color="#a83246")

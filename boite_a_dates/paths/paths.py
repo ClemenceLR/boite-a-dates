@@ -9,7 +9,12 @@ bpapi = Blueprint('api/v1', __name__, url_prefix='/api/v1')
 
 @bpapi.route("/")
 def home():
-    categories = get_categories_user()
+    user_id = session["user_id"]
+    if user_id == None :
+        categories = get_categories_user()
+    else:
+        categories = get_categories_user(user_id)
+
     return render_template("home.html", categories = categories, color="#a83246")
 
 
@@ -21,7 +26,6 @@ def categories():
 @bpapi.route("/pick_card")
 def pick_card():
     user_id = session["user_id"]
-    print(user_id)
     if user_id == None :
         card = pick_card_user(1,-1)
     else: 
@@ -31,20 +35,21 @@ def pick_card():
 @bpapi.route("/pick_card_cat/<int:number>", methods=['POST', 'GET'])
 def pick_card_cat(number=-1):
     if request.method == 'POST':
-        request_datas = request.get_json()
-        card = pick_card_user(session["user_id"],number)
+        id_user = session["user_id"]
+        card = pick_card_user(id_user,number)
         if card == -1:
             flash("This category has no cards", "error")
-            categories = get_categories_user()
+            categories = get_categories_user(id_user)
             return render_template("home.html", categories = categories, color="#a83246")
 
         return render_template("card_presenter.html",card = card)
     else:
+        id_user = session["user_id"]
         if number != -1:
-            card = pick_card_user(session["user_id"],number)
+            card = pick_card_user(id_user,number)
             if card == -1:
                 flash("This category has no cards", "error")
-                categories = get_categories_user()
+                categories = get_categories_user(id_user)
                 return render_template("home.html", categories = categories, color="#a83246")
             else:
                 return render_template("card_presenter.html",card = card)
@@ -67,10 +72,10 @@ def insert_card():
             flash("Card creation failed", "error")
         
         flash("Card was created", "success")
-        categories = get_categories_user()
+        categories = get_categories_user(id_user)
         return render_template("home.html", categories = categories, color="#a83246")
     else:
-        id_user = 1
+        id_user = session["user_id"]
         categories = get_categories_user(id_user)
         print(categories)
         return render_template("insert_card.html", categories = categories , color="#a83246")

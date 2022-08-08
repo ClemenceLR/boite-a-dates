@@ -4,6 +4,7 @@ import random
 
 def get_categories_user(id_user=1):
     cursor = get_db().cursor()
+    print("ID",id_user)
     cursor.execute("SELECT * FROM BD_CATEGORIES WHERE id_user = '%d' or id_user = 1"%(id_user))
     categories_liste = []
 
