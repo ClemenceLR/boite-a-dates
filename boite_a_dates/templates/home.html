@@ -11,14 +11,17 @@
     {% endwith %}
     <div class="wrapper">
         <div class="home_text">
+            <p>
             Bienvenue sur la page d'accueil de la boite à dates !
+            <br>
+            Clique sur une catégorie pour tirer une carte
+            </p>
         </div>
 
-            <br><br>
             <div class="categories">
                 {% for category in categories %}
                 <div class="category">    
-                    <div class="round" style="background-color:{{category['color']}}"></div><div class="category_name">{{ category['category'] }}</div><br>
+                    <div class="round" style="background-color:{{category['color']}}"></div><div class="category_name"><a href="{{ url_for('api/v1.pick_card_cat' , number=category['id_cat'])}}" onmouseover="this.style.color='{{category['color']}}';" onmouseout="this.style.color='';"> {{ category['category'] }} </a></div><br>
                 </div>
                 {% endfor %}
             </div>

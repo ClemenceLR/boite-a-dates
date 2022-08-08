@@ -3,7 +3,7 @@
 }
 
 .home_text{
-    margin-top:2%;
+    margin-top:5%;
     font-family: cursive;
 }
 
@@ -27,4 +27,9 @@
 .category{
     font-family: cursive;
     display: inline-flex;
+}
+
+.category_name a{
+    text-decoration: none;
+    color: #000;
 }

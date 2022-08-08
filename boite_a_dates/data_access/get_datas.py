@@ -8,7 +8,7 @@ def get_categories_user(id_user=1):
     categories_liste = []
 
     for element in cursor.fetchall():
-        categories_liste.append({"category":element["categories_name"], "color":element["color"]})
+        categories_liste.append({"category":element["categories_name"], "color":element["color"], "id_cat":element["id_categories"]})
 
     return categories_liste
 
@@ -39,26 +39,20 @@ Pick a random card in the user cards list
 """
 def pick_card_user(id_user=1, id_category=1):
     cursor = get_db().cursor()
-    print("ID CAT", id_category)
     if(id_category == -1):
-        print("HERE")
         available_id = get_categories_id(id_user)
-        print("AVAIL",available_id)
         category_picked = random.choice(available_id)
         print(category_picked)
     else:
         category_picked = id_category
-        print("CAT PICKED", id_category)
     
-    print("SELECT card_text FROM BD_CARD where id_user = '%d' and id_categories = '%d'"%(id_user, category_picked))
+    #print("SELECT card_text FROM BD_CARD where id_user = '%d' and id_categories = '%d'"%(id_user, category_picked))
     cursor.execute("SELECT card_text FROM BD_CARD where id_user = '%d' and id_categories = '%d'"%(id_user, category_picked))
 
     cards_pool = []
     for element in cursor.fetchall():
         cards_pool.append({"name":element["card_text"]})
-    
-    print("CARDS POOL", cards_pool)
-    
+        
     chosen = random.choice(cards_pool)["name"]
     
     category_card = get_category_card(category_picked)
