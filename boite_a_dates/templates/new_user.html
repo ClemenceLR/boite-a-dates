@@ -13,7 +13,7 @@
         {% include 'nav.html' %}
     {% endwith %}
 
-    <form action="{{ url_for('api/v1.create_user') }}" method="post" class="form-card">
+    <form action="{{ url_for('auth.register')}}" method="post" class="form-card">
         <div class="text-card">
             <label class="text-label" form="login_text">Login</label>
             <input type="text" class="text-card-input" name="login_text" id="login_text" placeholder="" required>

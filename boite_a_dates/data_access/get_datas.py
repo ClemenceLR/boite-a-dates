@@ -63,3 +63,22 @@ def pick_card_user(id_user=1, id_category=1):
         "color":category_card["color"]
     }
     return chosen_card
+
+def get_user_by_login(user_login):
+    cursor = get_db().cursor()
+    cursor.execute("SELECT id_user, pwd_user FROM BD_USER WHERE login_user = '%s'"%(user_login))
+    user_data ={}
+    for element in cursor.fetchall():
+        user_data["id_user"] = element["id_user"]
+        user_data["pwd_user"] = element["pwd_user"]
+        return user_data
+
+def get_user_by_id(user_id):
+    cursor = get_db().cursor()
+    cursor.execute("SELECT id_user, pwd_user FROM BD_USER WHERE id_user = %d"%(user_id))
+    user_data ={}
+    for element in cursor.fetchall():
+        user_data["id_user"] = element["id_user"]
+        user_data["pwd_user"] = element["pwd_user"]
+        return user_data
+    

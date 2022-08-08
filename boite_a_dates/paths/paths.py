@@ -1,7 +1,6 @@
-from flask import Blueprint, request, jsonify, request,render_template, flash
+from flask import Blueprint, request, jsonify, request,render_template, flash, abort, redirect
 from flask_cors import cross_origin
 from passlib.hash import sha256_crypt
-import os 
 from ..data_access.get_datas import get_categories_user,pick_card_user
 from ..data_access.insert_datas import insert_card_db, insert_category_db, insert_user_db, check_user_login_unicity
 
@@ -109,8 +108,12 @@ def create_user():
     else:
         return render_template("new_user.html", color="#a83246")
 
-@bpapi.route("/login")
-def log_user():
-    user_login = "clemence"
-    user_pwd = "clemence"
-    encrypted = get_user_by_login()
+@bpapi.route("/login", methods=["GET","POST"])
+def login_user():
+    form = request.form
+    if form.validate_on_submit():
+        data = form.to_dict()
+    
+    categories = get_categories_user()
+    print("success")
+    return render_template("home.html", categories = categories, color="#a83246")

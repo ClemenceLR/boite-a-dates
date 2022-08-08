@@ -2,10 +2,10 @@
 import os
 from boite_a_dates import create_app
 from flask_cors import CORS
-
 from dotenv import load_dotenv
-#load_dotenv('.env')
+from flask_login import LoginManager
 
+#load_dotenv('.env')
 app = create_app(debug=True)
 
 # global to app

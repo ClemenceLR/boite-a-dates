@@ -14,14 +14,14 @@
     {% endwith %}
 
     {{ toastr.include_toastr_js() }}
-    <form action="{{ url_for('api/v1.create_user') }}" method="post" class="form-card">
+    <form action="{{ url_for('auth.login')}}" method="post" class="form-card">
         <div class="text-card">
-            <label class="text-label" form="card_text">Login</label>
-            <input type="text" class="text-card-input" name="card_text" id="card_text" placeholder="" required>
+            <label class="text-label" form="login_text">Login</label>
+            <input type="text" class="text-card-input" name="login_text" id="login_text" placeholder="" required>
         </div>
         <div class="text-card">
-            <label class="text-label" form="card_text">Password</label>
-            <input type="password" class="text-card-input" name="card_text" id="card_text" placeholder="" required>
+            <label class="text-label" form="pwd_text">Password</label>
+            <input type="password" class="text-card-input" name="pwd_text" id="pwd_text" placeholder="" required>
         </div>
         <div class="validate-form">
             <input type="button" value="Annuler" class="cancel-button" onclick="window.location.href='{{url_for('api/v1.home')}}';">
