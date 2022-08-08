@@ -21,6 +21,8 @@ def insert_user_db(login_user, pwd_user):
         cursor = get_db().cursor()
         cursor.execute("INSERT INTO BD_USER (login_user,pwd_user) VALUES ('%s','%s')"%(login_user,pwd_user))
         get_db().commit()
+        cursor.execute("SELECT id_user FROM BD_USER")
+        return len(cursor.fetchall())
     except Exception:
         return -1
 

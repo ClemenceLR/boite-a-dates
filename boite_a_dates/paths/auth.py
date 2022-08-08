@@ -11,7 +11,6 @@ bp = Blueprint('auth', __name__, url_prefix='/auth')
 
 @bp.route('/register', methods=('GET', 'POST'))
 def register():
-    print("REGISTER")
     if request.method == 'POST':
         data = request.form.to_dict()
         print(data)
@@ -19,9 +18,9 @@ def register():
         user_pwd = data["pwd_text"] 
         if(check_user_login_unicity(user_login) != -2):
             encrypted = sha256_crypt.encrypt(user_pwd)
-            insert_user_db(user_login,encrypted)
+            id_user = insert_user_db(user_login,encrypted)
+            session['user_id'] = id_user
             categories = get_categories_user()
-            print("success")
             return render_template("home.html", categories = categories, color="#a83246")
         else:
             print("failed")
@@ -31,13 +30,14 @@ def register():
 
 @bp.route('/login', methods=('GET', 'POST'))
 def login():
-    print("LOGIN")
     if request.method == 'POST':
         error = None
         data = request.form.to_dict()
         user_login = data["login_text"] #TODO TEST clemence
         user_pwd = data["pwd_text"] 
-
+        if user_login == "" and user_pwd == "":
+            flash("Login et mots de passe incorrects")
+            return render_template('login.html', color="#a83246")
         user = get_user_by_login(user_login)
         if user is None:
             error = "Incorrrect username"

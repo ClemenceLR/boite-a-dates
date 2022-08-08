@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <title>Boite à dates</title>
     <link href="/static/css/creation_forms.css" rel="stylesheet" />
+    {{ toastr.include_jquery() }}
+    {{ toastr.include_toastr_css() }}
+    {{ toastr.message() }}
 </head>
 <body>
     {% with color=color %}
@@ -30,6 +33,7 @@
 
     </form>
 
+    {{ toastr.include_toastr_js() }}
 
 </body>
 </html>
