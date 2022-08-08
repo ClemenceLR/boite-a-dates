@@ -17,7 +17,7 @@ Return the id of categories available
 """
 def get_categories_id(id_user=1):
     cursor = get_db().cursor()
-    cursor.execute("SELECT distinct id_categories FROM BD_CARD where id_user='%d'"%(id_user))
+    cursor.execute("SELECT distinct id_categories FROM BD_CARD where id_user='%d' or id_user = 1"%(id_user))
     categories_valid = []
     for element in cursor.fetchall():
         categories_valid.append(element["id_categories"])
@@ -45,7 +45,7 @@ def pick_card_user(id_user=1, id_category=1):
         category_picked = id_category
     
     #print("SELECT card_text FROM BD_CARD where id_user = '%d' and id_categories = '%d'"%(id_user, category_picked))
-    cursor.execute("SELECT card_text FROM BD_CARD where id_user = '%d' and id_categories = '%d'"%(id_user, category_picked))
+    cursor.execute("SELECT card_text FROM BD_CARD where (id_user = '%d' or id_user = 1) and id_categories = '%d'"%(id_user, category_picked))
 
     cards_pool = []
     for element in cursor.fetchall():

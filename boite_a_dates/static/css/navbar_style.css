@@ -3,16 +3,13 @@ body{
 }
 
 ul{
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
+  overflow:hidden;
+  list-style:none;
+  padding:0;
+  position:relative;
+  width:100%; /* FOR a static width like Posh CSS */
+  margin:0 auto;
   font-family: cursive;
-}
-  
-li{
-  float: left;
 }
   
 li a{
@@ -22,15 +19,17 @@ li a{
   padding: 14px 16px;
   text-decoration: none;
 }
+
+li.left {
+  float:left;
+ }
+ li.right {
+  float:right;
+ }
   
   /* Change the link color to #111 (black) on hover */
 li a:hover {
   background-color:rgba(17,17,17,0.3);
     
 }
-
-li:nth-child(5), li:nth-child(6){
-  float: right;
-}  
-
 

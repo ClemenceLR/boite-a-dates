@@ -6,16 +6,20 @@
     <link href="/static/css/navbar_style.css" rel="stylesheet" />
 </head>
 <body>
+  <ul style="background-color: {{color}}">
+      <li class="left"><a href="{{ url_for('api/v1.home') }}">Accueil</a></li>
+      <li class="left"><a href="{{ url_for('api/v1.pick_card') }}">Tirer une carte</a></li>
+      {% if session.user_id %} 
+      <li class="left"><a href="{{ url_for('api/v1.insert_card')}}">Ajouter une carte</a></li>
+      <li class="left"><a href="{{ url_for('api/v1.insert_category')}}">Ajouter une catégorie</a></li>
+      {% endif %}
 
-<ul style="background-color: {{color}}";>
-    <li><a href="{{ url_for('api/v1.home') }}">Accueil</a></li>
-    <li><a href="{{ url_for('api/v1.pick_card') }}">Tirer une carte</a></li>
-    <li><a href="{{ url_for('api/v1.insert_card')}}">Ajouter une carte</a></li>
-    <li><a href="{{ url_for('api/v1.insert_category')}}">Ajouter une catégorie</a></li>
-    <li class="login"><a href="{{ url_for('auth.login')}}">Se connecter</a></li>
-    <li class="login"><a  href="{{ url_for('auth.register')}}">Créer un compte</a></li>
-
+    {% if session.user_id %} 
+      <li class="right"><a href="{{ url_for('auth.logout')}}">Se déconnecter</a></li>
+    {% else %}
+      <li class="right"><a href="{{ url_for('auth.login')}}">Se connecter</a></li>
+      <li class="right"><a  href="{{ url_for('auth.register')}}">Créer un compte</a></li>
+    {% endif %}
   </ul> 
-
 </body>
 </html> 

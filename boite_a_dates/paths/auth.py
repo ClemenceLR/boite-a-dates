@@ -1,5 +1,5 @@
 import functools
-from flask import (Blueprint, flash, g, redirect, render_template, request, session, url_for)
+from flask import (Blueprint, flash, g, redirect, render_template, request, session)
 from werkzeug.security import check_password_hash
 from ..data_access.insert_datas import  insert_user_db, check_user_login_unicity
 from ..data_access.get_datas import get_categories_user,get_user_by_login, get_user_by_id
@@ -74,9 +74,11 @@ def logout():
 def login_required(view):
     @functools.wraps(view)
     def wrapped_view(**kwargs):
+        print("HERE WRAPPER")
         if g.user is None:
+            print("GUSER NONE")
             return render_template("login.html", color="#a83246")
-        
+        print("GUSER", g.user)
         return view(**kwargs)
     
     return wrapped_view
