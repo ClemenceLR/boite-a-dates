@@ -2,12 +2,11 @@
 import os
 from boite_a_dates import create_app
 from flask_cors import CORS
-from dotenv import load_dotenv
 
+from dotenv import load_dotenv
 #load_dotenv('.env')
 
 app = create_app(debug=True)
-
 
 # global to app
 #CORS(app, resources={r"/api/v1": {"origins": os.environ.get('CORS_URL')}})

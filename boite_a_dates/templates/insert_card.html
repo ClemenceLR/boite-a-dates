@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Boite à dates</title>
-    <link href="/static/css/home_style.css" rel="stylesheet" />
+    <link href="/static/css/card_creation.css" rel="stylesheet" />
 </head>
 <body>
     {% with color=color %}
@@ -11,19 +11,21 @@
     {% endwith %}
 
     <form action="{{ url_for('api/v1.insert_card') }}" method="post" class="form-card">
-        <div class="form-card">
-            <label form="card_text"> Texte de la carte</label>
-            <input type="text" name="card_text" id="card_text" placeholder="Entre le texte de ta carte" required>
+        <div class="text-card">
+            <label class="text-label" form="card_text"> Texte de la carte</label>
+            <input type="text" class="text-card-input" name="card_text" id="card_text" placeholder="Entre le texte de ta carte" required>
         </div>
-        <select name="category_list">
+        <select name="category_list" class="select-cat">
             {% for element in categories %}
                 <option value="{{element['id_cat']}}">
                     {{element['category']}}
                 </option>
             {% endfor %}
         </select>
-        <div class="validate_form">
-            <input type="submit" value="Valider" class="validate_button">
+        <div class="validate-form">
+            <input type="button" value="Annuler" class="cancel-button" onclick="window.location.href='{{url_for('api/v1.home')}}';">
+
+            <input type="submit" value="Valider" class="validate-button">
         </div>
 
     </form>

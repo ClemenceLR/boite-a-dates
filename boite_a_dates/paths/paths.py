@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify, request,render_template
+from flask import Blueprint, request, jsonify, request,render_template, flash
 from flask_cors import cross_origin
 import os 
 from ..data_access.get_datas import get_categories_user,pick_card_user
@@ -45,12 +45,14 @@ def insert_card():
         card_text = data["card_text"] 
         id_user = 1
         id_category = int(data["category_list"])
-        print(id_category)
-        print(type(id_category))
-        insert_card_db(id_user, id_category, card_text)
-        print(data)
-        print(card_text)
-        return jsonify("WIP")
+
+        insert_ret = insert_card_db(id_user, id_category, card_text)
+        if insert_ret == -1:
+            flash("Card creation failed", "error")
+        
+        flash("Card was inserted", "success")
+        categories = get_categories_user()
+        return render_template("home.html", categories = categories, color="#a83246")
     else:
         id_user = 1
         categories = get_categories_user(id_user)

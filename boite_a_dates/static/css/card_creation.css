@@ -1,0 +1,82 @@
+.form-card{
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+    padding: 20px;
+    position: relative;
+    font-family: cursive;
+    text-align: center;
+}
+
+.text-card{
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 20px;
+}
+
+.text-label{
+    padding-right:2%;
+}
+
+.text-card-input{
+    height: 40px;
+    width: 39%;
+    border:rgb(217, 192, 192) solid 0.5px;
+    border-radius: 5px;
+    font-family: cursive;
+}
+
+.select-cat{
+    width: 50%;
+    height: 50px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 20px;
+    font-family: cursive;
+}
+
+.validate-button{
+    width: 10%;
+    height: 50px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 20px;
+    background-color: #32a851;
+    font-family: cursive;
+}
+
+.validate-button:hover{
+    background-color: #298241;
+    color: white;
+}
+
+
+.cancel-button{
+    width: 10%;
+    height: 50px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-right: 1%;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 20px;
+    background-color: #a83246;
+    font-family: cursive;
+}
+
+.cancel-button:hover{
+    background-color: #770a1c;
+    color: white;
+}
