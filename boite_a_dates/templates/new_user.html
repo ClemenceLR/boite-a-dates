@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Boite à dates</title>
-    <link href="/static/css/creation_forms.css" rel="stylesheet" />
+    <link href="/static/css/login_form.css" rel="stylesheet" />
     {{ toastr.include_jquery() }}
     {{ toastr.include_toastr_css() }}
     {{ toastr.message() }}
@@ -12,24 +12,26 @@
     {% with color=color %}
         {% include 'nav.html' %}
     {% endwith %}
+    <div class="login-form">
+        <form action="{{ url_for('auth.register')}}" method="post" class="form-card">
+            <h2>Créer un compte</h2>
 
-    <form action="{{ url_for('auth.register')}}" method="post" class="form-card">
-        <div class="text-card">
-            <label class="text-label" form="login_text">Login</label>
-            <input type="text" class="text-card-input" name="login_text" id="login_text" placeholder="" required>
-        </div>
-        <div class="text-card">
-            <label class="text-label" form="pwd_text">Password</label>
-            <input type="password" class="text-card-input" name="pwd_text" id="pwd_text" placeholder="" required>
-        </div>
-        <div class="validate-form">
-            <input type="button" value="Annuler" class="cancel-button" onclick="window.location.href='{{url_for('api/v1.home')}}';">
+            <div class="text-card">
+                <label class="text-label" form="login_text">Login</label>
+                <input type="text" class="text-card-input" name="login_text" id="login_text" placeholder="" required>
+            </div>
+            <div class="text-card">
+                <label class="text-label" form="pwd_text">Password</label>
+                <input type="password" class="text-card-input" name="pwd_text" id="pwd_text" placeholder="" required>
+            </div>
+            <div class="validate-form">
+                <input type="button" value="Annuler" class="cancel-button" onclick="window.location.href='{{url_for('api/v1.home')}}';">
 
-            <input type="submit" value="Valider" class="validate-button">
-        </div>
+                <input type="submit" value="Valider" class="validate-button">
+            </div>
+        </form>
 
-    </form>
-
+    </div>
     {{ toastr.include_toastr_js() }}
 
 </body>

@@ -2,15 +2,20 @@
 Application Boite à Dates
 
 TODO :
-- Créer db
+- Créer db :check:
 - Afficher choix aléatoire :check:
 - Afficher choix par catégorie :check:
+- Login :check:
+- Créer ses propres cartes :check:
+- Créer ses propres catégories ? :check:
+- Améliorer la création de la DB :check:
+
 - Afficher toutes les cartes d'une catégorie
-- Login
-- Créer ses propres cartes
-- Créer une série de cartes
-- Créer ses propres catégories ?
+- Créer une série de cartes 
 
 - Gérer la sécurité de l'application -> éviter le bot création de compte
 - Empêcher les insertions admin
-- Améliorer la création de la DB
+
+- Check pour empêcher un utilisateur de créer plusieurs fois la même catégorie
+
+- Gestion de la langue

@@ -31,7 +31,7 @@ def pick_card_cat(number=-1):
     if request.method == 'POST':
         card = pick_card_user(user_id,number)
         if card == -1:
-            flash("This category has no cards", "error")
+            flash("Cette catégorie n'a pas de carte !", "error")
             categories = get_categories_user(user_id)
             return render_template("home.html", categories = categories, color="#a83246")
 
@@ -40,7 +40,7 @@ def pick_card_cat(number=-1):
         if number != -1:
             card = pick_card_user(user_id,number)
             if card == -1:
-                flash("This category has no cards", "error")
+                flash("Cette catégorie n'a pas de carte !", "error")
                 categories = get_categories_user(user_id)
                 return render_template("home.html", categories = categories, color="#a83246")
             else:
@@ -60,10 +60,10 @@ def insert_card():
         id_category = int(data["category_list"])
         insert_ret = insert_card_db(user_id, id_category, card_text)
         if insert_ret == -1:
-            flash("Card creation failed", "error")
+            flash("La création de la carte a échoué", "error")
             return render_template("insert_card.html",  color="#a83246")
         else:
-            flash("Card was created", "success")
+            flash("La carte a été créée", "success")
             categories = get_categories_user(user_id)
             return render_template("home.html", categories = categories, color="#a83246")
     else:
@@ -80,10 +80,10 @@ def insert_category():
         color = data["cat_color"]
         insert_ret = insert_category_db(user_id, category_name,color)
         if insert_ret == -1:
-            flash("Category creation failed", "error")
+            flash("La catégorie n'a pas pu être créée", "error")
             return render_template("insert_category.html",  color="#a83246")
         else:
-            flash("Category was created", "success")
+            flash("La catégorie a été créée", "success")
             categories = get_categories_user(user_id)
             return render_template("home.html", categories = categories, color="#a83246")
     else:
@@ -103,7 +103,7 @@ def create_user():
             return render_template("home.html", categories = categories, color="#a83246")
         else:
             print("failed")
-            flash("This login already exists", "error")
+            flash("Ce login existe déjà", "error")
             return render_template("new_user.html", color="#a83246")
     else:
         return render_template("new_user.html", color="#a83246")

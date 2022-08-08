@@ -23,8 +23,7 @@ def register():
             categories = get_categories_user()
             return render_template("home.html", categories = categories, color="#a83246")
         else:
-            print("failed")
-            flash("This login already exists", "error")
+            flash("Ce nom d'utilisateur existe déjà", "error")
             return render_template("new_user.html", color="#a83246")
     return render_template('new_user.html',color="#a83246")
 
@@ -33,7 +32,7 @@ def login():
     if request.method == 'POST':
         error = None
         data = request.form.to_dict()
-        user_login = data["login_text"] #TODO TEST clemence
+        user_login = data["login_text"]
         user_pwd = data["pwd_text"] 
         if user_login == "" and user_pwd == "":
             flash("Login et mots de passe incorrects")
@@ -46,7 +45,7 @@ def login():
         if error is None:
             session.clear()
             session['user_id'] = user['id_user']
-            flash("Login success", "success")
+            flash("Connecté", "success")
             categories = get_categories_user(session['user_id'])
             return render_template("home.html", categories = categories, color="#a83246")
         flash(error)
