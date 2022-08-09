@@ -4,7 +4,8 @@
 
 .home_text{
     margin-top:5%;
-    font-family: trial;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1.5em;
 }
 
 .categories{
@@ -26,6 +27,7 @@
 
 .category{
     font-family: trial;
+    font-size: 1.5em;
     display: inline-flex;
 }
 

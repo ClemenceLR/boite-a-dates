@@ -3,7 +3,7 @@ INSERT INTO "BD_CATEGORIES" ("id_categories","categories_name","color","id_user"
 (2,"Coocooning a la maison","#a83246",1),
 (3, "Miame","#fac517",1),
 (4, "Enfin le Weekend !","#1717fa",1),
-(5, "C'est les vacances !","#e314d9",1);
+(5, "C'est les vacances !","#a338eb",1);
 
 
 INSERT INTO "BD_USER" ("id_user","login_user","pwd_user" ) VALUES 

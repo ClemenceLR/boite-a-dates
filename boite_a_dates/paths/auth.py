@@ -63,8 +63,7 @@ def load_logged_in_user():
 @bp.route('/logout')
 def logout():
     session.clear()
-    categories = get_categories_user()
-    return render_template("home.html", categories = categories, color="#a83246")
+    return render_template("login.html", color="#a83246")
 
 def login_required(view):
     @functools.wraps(view)
