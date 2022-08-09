@@ -4,7 +4,7 @@
 
 .home_text{
     margin-top:5%;
-    font-family: cursive;
+    font-family: trial;
 }
 
 .categories{
@@ -25,7 +25,7 @@
 }
 
 .category{
-    font-family: cursive;
+    font-family: trial;
     display: inline-flex;
 }
 

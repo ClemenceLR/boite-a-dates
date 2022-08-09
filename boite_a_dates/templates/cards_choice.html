@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Boite à dates</title>
-    <link href="/static/css/card_pool.css" rel="stylesheet" />
+    <link href="{{url_for('static', filename='css/card_pool.css')}}" rel="stylesheet" />
     {{ toastr.include_jquery() }}
     {{ toastr.include_toastr_css() }}
     {{ toastr.message() }}

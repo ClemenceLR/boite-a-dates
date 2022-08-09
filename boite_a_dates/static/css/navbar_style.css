@@ -1,3 +1,8 @@
+@font-face{
+  font-family: trial;
+  src:url("static/fonts/the-circus-display-font/ttf/TheCircous.ttf");
+}
+
 body{
   margin:0;
 }
@@ -9,7 +14,8 @@ ul{
   position:relative;
   width:100%; /* FOR a static width like Posh CSS */
   margin:0 auto;
-  font-family: cursive;
+  font-family: navigation;
+  font-size: 1.5em;
 }
   
 li a{

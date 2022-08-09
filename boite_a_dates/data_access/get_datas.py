@@ -61,6 +61,9 @@ def pick_card_user(id_user=1, id_category=1):
     }
     return chosen_card
 
+"""
+Get the user infos by login
+"""
 def get_user_by_login(user_login):
     cursor = get_db().cursor()
     cursor.execute("SELECT id_user, pwd_user FROM BD_USER WHERE login_user = '%s'"%(user_login))
@@ -70,6 +73,9 @@ def get_user_by_login(user_login):
         user_data["pwd_user"] = element["pwd_user"]
         return user_data
 
+"""
+Get the user info by id
+"""
 def get_user_by_id(user_id):
     cursor = get_db().cursor()
     cursor.execute("SELECT id_user, pwd_user FROM BD_USER WHERE id_user = %d"%(user_id))
@@ -79,16 +85,21 @@ def get_user_by_id(user_id):
         user_data["pwd_user"] = element["pwd_user"]
         return user_data
 
+"""
+Count the number of cards available
+"""
 def check_category_cards_total(user_id=1, id_category=1):
     cursor = get_db().cursor()
     cursor.execute("SELECT * FROM BD_CARD WHERE (id_user = %d or id_user = 1) and id_categories = %d"%(user_id, id_category))
     return len(cursor.fetchall())
 
+"""
+Get a set of random cards belonging to a category
+"""
 def get_random_cards(user_id=1, id_category=1):
     cards_pool = []
     flag = True
     cards_number = check_category_cards_total(user_id, id_category)
-    print("HERE", cards_number)
     if cards_number > 5:
         cards_number = 5
     for i in range(0, cards_number):

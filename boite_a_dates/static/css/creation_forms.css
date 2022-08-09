@@ -5,7 +5,7 @@
     border-radius: 5px;
     padding: 20px;
     position: relative;
-    font-family: cursive;
+    font-family: trial;
 }
 
 .text-card{
@@ -24,7 +24,7 @@
     width: 39%;
     border:rgb(217, 192, 192) solid 0.5px;
     border-radius: 5px;
-    font-family: cursive;
+    font-family: trial;
 }
 
 .color-card-input{
@@ -41,7 +41,7 @@
     font-weight: bold;
     color: #000;
     margin-bottom: 20px;
-    font-family: cursive;
+    font-family: trial;
 }
 
 .validate-button{
@@ -55,7 +55,7 @@
     color: white;
     margin-bottom: 20px;
     background-color: #32a851;
-    font-family: cursive;
+    font-family: trial;
 }
 
 .validate-button:hover{
@@ -75,7 +75,7 @@
     color: white;
     margin-bottom: 20px;
     background-color: #a83246;
-    font-family: cursive;
+    font-family: trial;
 }
 
 .cancel-button:hover{

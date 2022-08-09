@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Boite à dates</title>
-    <link href="/static/css/card_style.css" rel="stylesheet" />
+    <link href="{{url_for('static', filename='css/card_style.css')}}" rel="stylesheet" />
 </head>
 <body>
     {% with color=card['color'] %}

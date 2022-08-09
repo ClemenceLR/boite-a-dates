@@ -3,14 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Boite à dates</title>
-    <link href="/static/css/navbar_style.css" rel="stylesheet" />
+    <link href="{{url_for('static', filename='css/navbar_style.css')}}" rel="stylesheet" />
+    <style type="text/css">
+
+      @font-face{
+        font-family: navigation;
+        font-size:2em;
+        src:url("{{ url_for('static', filename='fonts/onedirection/OneDirection.ttf') }}");
+      }
+
+      @font-face{
+        font-family: trial;
+        font-size:2em;
+        src:url("{{ url_for('static', filename='fonts/unicorn-scribbles-font/UnicornScribbles-eLmg.ttf') }}");
+      }
+      </style>
 </head>
 <body>
   <ul style="background-color: {{color}}">
       <li class="left"><a href="{{ url_for('api/v1.home') }}">Accueil</a></li>
+      {% if session.user_id %} 
       <li class="left"><a href="{{ url_for('api/v1.pick_card') }}">Surprise !</a></li>
       <li class="left"><a href="{{ url_for('api/v1.card_choice', number=0)}}">Plusieurs cartes</a></li>
-      {% if session.user_id %} 
       <li class="left"><a href="{{ url_for('api/v1.insert_card')}}">Ajouter une carte</a></li>
       <li class="left"><a href="{{ url_for('api/v1.insert_category')}}">Ajouter une catégorie</a></li>
       {% endif %}
