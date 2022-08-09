@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Boite à dates</title>
+    <link href="/static/css/card_pool.css" rel="stylesheet" />
+    {{ toastr.include_jquery() }}
+    {{ toastr.include_toastr_css() }}
+    {{ toastr.message() }}
+</head>
+<body>
+    {% with color=color %}
+        {% include 'nav.html' %}
+    {% endwith %}
+    <div class="card_pool">
+    {% for card in card_pool %}
+    <div class="card_page">            
+        <div class="card">
+            <div class="stick_head" style="background-color:{{card['color']}}"></div>
+            <div class="card_content">{{card["card"]}}</div>
+         </div>
+    </div>
+    {% endfor %}
+    </div>
+</body> 

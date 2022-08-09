@@ -1,0 +1,29 @@
+.card_pool{
+    padding-top:5%;
+}
+
+.card_page{
+    width:100%;
+    padding-top: 2%;
+    text-align:center;
+}
+
+.card{
+    display:inline-flex;
+}
+
+.card_content{
+    font-family:cursive;
+    height:30px;
+    width:250px;
+    border-radius:0 20px 20px 0;
+    background-color: bisque;
+    padding-top:10px;
+}
+
+
+.stick_head{
+    height:40px;
+    width:50px;
+    border-radius: 20px 0 0 20px;
+}

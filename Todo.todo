@@ -8,13 +8,12 @@ TODO :
 - [x] Améliorer la création de la DB
 - [x] Check pour empêcher un utilisateur de créer plusieurs fois la même catégorie
 - [x] Empêcher les insertions globales
+- [x] Afficher plusieurs les cartes d'une catégorie
 
-- [] Afficher toutes les cartes d'une catégorie
 - [] Créer une série de cartes 
-- [] Supprimer une cartes
+- [] Supprimer une carte
 - [] Supprimer une catégorie
 
 - [] Gérer la sécurité de l'application -> éviter le bot création de compte
 
-
-- [] Gestion de la langue
+- [] Gestion de la langue / Internationalisation

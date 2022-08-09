@@ -1,13 +1,14 @@
 from flask import Blueprint, request, jsonify, request,render_template, flash, session
 from flask_cors import cross_origin
 from passlib.hash import sha256_crypt
-from ..data_access.get_datas import get_categories_user,pick_card_user
+from ..data_access.get_datas import get_categories_user,pick_card_user, get_random_cards
 from ..data_access.insert_datas import insert_card_db, insert_category_db, insert_user_db, check_user_login_unicity
 from .auth import login_required
 
 bpapi = Blueprint('api/v1', __name__, url_prefix='/api/v1')
 
 @bpapi.route("/")
+@login_required
 def home():
     user_id = check_id_user(session.get("user_id", None))
     categories = get_categories_user(user_id)
@@ -15,12 +16,14 @@ def home():
 
 
 @bpapi.route("/categories")
+@login_required
 def categories():
     categories = get_categories_user()
     return jsonify(categories)
 
 
 @bpapi.route("/pick_card")
+@login_required
 def pick_card():
     user_id = check_id_user(session.get("user_id", None))
     card = pick_card_user(user_id,-1)
@@ -28,6 +31,7 @@ def pick_card():
 
 
 @bpapi.route("/pick_card_cat/<int:number>", methods=['POST', 'GET'])
+@login_required
 def pick_card_cat(number=-1):
     user_id = check_id_user(session.get("user_id", None))
     if request.method == 'POST':
@@ -107,6 +111,22 @@ def create_user():
             return render_template("new_user.html", color="#a83246")
     else:
         return render_template("new_user.html", color="#a83246")
+
+@bpapi.route("/card_choice/<int:number>", methods=['POST', 'GET'])
+@login_required
+def card_choice(number):
+    user_id = check_id_user(session.get("user_id", None))
+    if number != 0:
+        card_pool = get_random_cards(user_id,number)
+        if len(card_pool) == 0:
+            flash("Une erreur est survenue !", "error")
+            categories = get_categories_user(user_id)
+            return render_template("card_category_presenter.html", categories = categories, color="#a83246")
+        else:
+            return render_template("cards_choice.html",card_pool = card_pool, color=card_pool[0]["category"]['color'])
+    else:
+        categories = get_categories_user(user_id)
+        return render_template("card_category_presenter.html", categories = categories, color="#a83246")
 
 
 def check_id_user(id_to_check):

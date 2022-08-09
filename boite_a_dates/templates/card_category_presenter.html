@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Boite à dates</title>
+    <link href="/static/css/home_style.css" rel="stylesheet" />
+    {{ toastr.include_jquery() }}
+    {{ toastr.include_toastr_css() }}
+    {{ toastr.message() }}
+</head>
+<body>
+    {% with color=color %}
+        {% include 'nav.html' %}
+    {% endwith %}
+    <div class="wrapper">
+        <div class="home_text">
+            <p>
+            Choisis une catégorie, on tire des cartes !
+            <br>
+            </p>
+        </div>
+
+            <div class="categories">
+                {% for category in categories %}
+                <div class="category">    
+                    <div class="round" style="background-color:{{category['color']}}"></div><div class="category_name"><a href="{{ url_for('api/v1.card_choice' , number=category['id_cat'])}}" onmouseover="this.style.color='{{category['color']}}';" onmouseout="this.style.color='';"> {{ category['category'] }} </a></div><br>
+                </div>
+                {% endfor %}
+            </div>
+            {{ toastr.include_toastr_js() }}
+    </div>
+</body>
+</html>

@@ -42,10 +42,8 @@ def pick_card_user(id_user=1, id_category=1):
         category_picked = random.choice(available_id)
     else:
         category_picked = id_category
-    
     #print("SELECT card_text FROM BD_CARD where id_user = '%d' and id_categories = '%d'"%(id_user, category_picked))
     cursor.execute("SELECT card_text FROM BD_CARD where (id_user = '%d' or id_user = 1) and id_categories = '%d'"%(id_user, category_picked))
-
     cards_pool = []
     for element in cursor.fetchall():
         cards_pool.append({"name":element["card_text"]})
@@ -80,4 +78,26 @@ def get_user_by_id(user_id):
         user_data["id_user"] = element["id_user"]
         user_data["pwd_user"] = element["pwd_user"]
         return user_data
-    
+
+def check_category_cards_total(user_id=1, id_category=1):
+    cursor = get_db().cursor()
+    cursor.execute("SELECT * FROM BD_CARD WHERE (id_user = %d or id_user = 1) and id_categories = %d"%(user_id, id_category))
+    return len(cursor.fetchall())
+
+def get_random_cards(user_id=1, id_category=1):
+    cards_pool = []
+    flag = True
+    cards_number = check_category_cards_total(user_id, id_category)
+    print("HERE", cards_number)
+    if cards_number > 5:
+        cards_number = 5
+    for i in range(0, cards_number):
+        while flag:
+            card = pick_card_user(user_id, id_category)
+            if card in cards_pool:
+                continue
+            else :
+                cards_pool.append(card)
+                flag = False
+        flag = True
+    return cards_pool
