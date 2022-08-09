@@ -1,0 +1,9 @@
+services:
+  boite_a_dates:
+    container_name: c_boite_a_dates
+    restart: unless-stopped
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./database:/app/database
