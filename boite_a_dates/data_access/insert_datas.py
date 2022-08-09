@@ -11,8 +11,13 @@ def insert_card_db(id_user, id_category, card_text):
 def insert_category_db(id_user, category_name,color):
     try:
         cursor = get_db().cursor()
-        cursor.execute("INSERT INTO BD_CATEGORIES (categories_name,color,id_user) VALUES ('%s','%s',%d)"%(category_name,color,id_user))
-        get_db().commit()
+        cursor.execute('SELECT * FROM BD_CATEGORIES WHERE LOWER(categories_name) like "%s" and (id_user = %d or id_user = 1)'%(category_name.lower(), id_user))
+        cursor_len = len(cursor.fetchall())
+        if(cursor_len != 0):
+            return -2
+        else:
+            cursor.execute('INSERT INTO BD_CATEGORIES (categories_name,color,id_user) VALUES ("%s","%s",%d)'%(category_name,color,id_user))
+            get_db().commit()
     except Exception:
         return -1
 

@@ -19,11 +19,13 @@ def categories():
     categories = get_categories_user()
     return jsonify(categories)
 
+
 @bpapi.route("/pick_card")
 def pick_card():
     user_id = check_id_user(session.get("user_id", None))
     card = pick_card_user(user_id,-1)
     return render_template("card_presenter.html",card = card)
+
 
 @bpapi.route("/pick_card_cat/<int:number>", methods=['POST', 'GET'])
 def pick_card_cat(number=-1):
@@ -34,7 +36,6 @@ def pick_card_cat(number=-1):
             flash("Cette catégorie n'a pas de carte !", "error")
             categories = get_categories_user(user_id)
             return render_template("home.html", categories = categories, color="#a83246")
-
         return render_template("card_presenter.html",card = card)
     else:
         if number != -1:
@@ -46,9 +47,6 @@ def pick_card_cat(number=-1):
             else:
                 return render_template("card_presenter.html",card = card)
 
-@bpapi.route("/test_nav")
-def test_nav():
-    return render_template("nav.html")
 
 @bpapi.route("/insert_card", methods=["POST", "GET"])
 @login_required
@@ -70,6 +68,7 @@ def insert_card():
         categories = get_categories_user(user_id)
         return render_template("insert_card.html", categories = categories , color="#a83246")
 
+
 @bpapi.route("/insert_category", methods=["POST", "GET"])
 @login_required
 def insert_category():
@@ -81,6 +80,9 @@ def insert_category():
         insert_ret = insert_category_db(user_id, category_name,color)
         if insert_ret == -1:
             flash("La catégorie n'a pas pu être créée", "error")
+            return render_template("insert_category.html",  color="#a83246")
+        elif insert_ret == -2:
+            flash("La catégorie existe déjà", "error")
             return render_template("insert_category.html",  color="#a83246")
         else:
             flash("La catégorie a été créée", "success")
@@ -99,10 +101,8 @@ def create_user():
             encrypted = sha256_crypt.encrypt(user_pwd)
             insert_user_db(user_login,encrypted)
             categories = get_categories_user()
-            print("success")
             return render_template("home.html", categories = categories, color="#a83246")
         else:
-            print("failed")
             flash("Ce login existe déjà", "error")
             return render_template("new_user.html", color="#a83246")
     else:

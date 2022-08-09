@@ -13,7 +13,6 @@ bp = Blueprint('auth', __name__, url_prefix='/auth')
 def register():
     if request.method == 'POST':
         data = request.form.to_dict()
-        print(data)
         user_login = data["login_text"] #TODO TEST clemence
         user_pwd = data["pwd_text"] 
         if(check_user_login_unicity(user_login) != -2):
@@ -65,17 +64,13 @@ def load_logged_in_user():
 def logout():
     session.clear()
     categories = get_categories_user()
-    print("success")
     return render_template("home.html", categories = categories, color="#a83246")
 
 def login_required(view):
     @functools.wraps(view)
     def wrapped_view(**kwargs):
-        print("HERE WRAPPER")
         if g.user is None:
-            print("GUSER NONE")
             return render_template("login.html", color="#a83246")
-        print("GUSER", g.user)
         return view(**kwargs)
     
     return wrapped_view

@@ -40,7 +40,6 @@ def pick_card_user(id_user=1, id_category=1):
     if(id_category == -1):
         available_id = get_categories_id(id_user)
         category_picked = random.choice(available_id)
-        print(category_picked)
     else:
         category_picked = id_category
     

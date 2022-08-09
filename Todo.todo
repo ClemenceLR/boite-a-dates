@@ -1,0 +1,20 @@
+TODO :
+- [x] Créer db
+- [x] Afficher choix aléatoire 
+- [x] Afficher choix par catégorie 
+- [x] Login 
+- [x] Créer ses propres cartes
+- [x] Créer ses propres catégories ? 
+- [x] Améliorer la création de la DB
+- [x] Check pour empêcher un utilisateur de créer plusieurs fois la même catégorie
+- [x] Empêcher les insertions globales
+
+- [] Afficher toutes les cartes d'une catégorie
+- [] Créer une série de cartes 
+- [] Supprimer une cartes
+- [] Supprimer une catégorie
+
+- [] Gérer la sécurité de l'application -> éviter le bot création de compte
+
+
+- [] Gestion de la langue

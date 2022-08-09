@@ -8,7 +8,7 @@
 <body>
   <ul style="background-color: {{color}}">
       <li class="left"><a href="{{ url_for('api/v1.home') }}">Accueil</a></li>
-      <li class="left"><a href="{{ url_for('api/v1.pick_card') }}">Tirer une carte</a></li>
+      <li class="left"><a href="{{ url_for('api/v1.pick_card') }}">Surprise !</a></li>
       {% if session.user_id %} 
       <li class="left"><a href="{{ url_for('api/v1.insert_card')}}">Ajouter une carte</a></li>
       <li class="left"><a href="{{ url_for('api/v1.insert_category')}}">Ajouter une catégorie</a></li>
