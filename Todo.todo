@@ -3,6 +3,7 @@ TODO :
 - [x] Afficher choix aléatoire 
 - [x] Afficher choix par catégorie 
 - [x] Login 
+- [x] Hasher les mots de passe
 - [x] Créer ses propres cartes
 - [x] Créer ses propres catégories ? 
 - [x] Améliorer la création de la DB
