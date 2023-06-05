@@ -3,7 +3,7 @@ from .db_access import *
 def insert_card_db(id_user, id_category, card_text):
     try:
         cursor = get_db().cursor()
-        cursor.execute("INSERT INTO BD_CARD (card_text,id_categories,id_user) VALUES ('%s',%d,%d)"%(card_text,id_category,id_user))
+        cursor.execute("INSERT INTO BD_CARD (card_text,id_categories,id_user) VALUES (?,?,?)",(card_text,id_category,id_user))
         get_db().commit()
     except Exception:
         return -1
@@ -11,12 +11,12 @@ def insert_card_db(id_user, id_category, card_text):
 def insert_category_db(id_user, category_name,color):
     try:
         cursor = get_db().cursor()
-        cursor.execute('SELECT * FROM BD_CATEGORIES WHERE LOWER(categories_name) like "%s" and (id_user = %d or id_user = 1)'%(category_name.lower(), id_user))
+        cursor.execute('SELECT * FROM BD_CATEGORIES WHERE LOWER(categories_name) like ? and (id_user = ? or id_user = 1)',(category_name.lower(), id_user))
         cursor_len = len(cursor.fetchall())
         if(cursor_len != 0):
             return -2
         else:
-            cursor.execute('INSERT INTO BD_CATEGORIES (categories_name,color,id_user) VALUES ("%s","%s",%d)'%(category_name,color,id_user))
+            cursor.execute('INSERT INTO BD_CATEGORIES (categories_name,color,id_user) VALUES (?,?,?)',(category_name,color,id_user))
             get_db().commit()
     except Exception:
         return -1
@@ -24,7 +24,7 @@ def insert_category_db(id_user, category_name,color):
 def insert_user_db(login_user, pwd_user):
     try:
         cursor = get_db().cursor()
-        cursor.execute("INSERT INTO BD_USER (login_user,pwd_user) VALUES ('%s','%s')"%(login_user,pwd_user))
+        cursor.execute("INSERT INTO BD_USER (login_user,pwd_user) VALUES (?,?)",(login_user,pwd_user))
         get_db().commit()
         cursor.execute("SELECT id_user FROM BD_USER")
         return len(cursor.fetchall())
@@ -33,7 +33,7 @@ def insert_user_db(login_user, pwd_user):
 
 def check_user_login_unicity(login_user):
     cursor = get_db().cursor()
-    cursor.execute("SELECT * FROM BD_USER WHERE login_user = '%s'"%(login_user))
+    cursor.execute("SELECT * FROM BD_USER WHERE login_user = ?",(login_user,))
     if(len(cursor.fetchall()) != 0):
             return -2
     else:

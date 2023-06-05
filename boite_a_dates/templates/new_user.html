@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Boite à dates</title>
-    <link href="/static/css/login_form.css" rel="stylesheet" />
-    {{ toastr.include_jquery() }}
-    {{ toastr.include_toastr_css() }}
-    {{ toastr.message() }}
+    <!doctype html>
+    <html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>Boite à dates</title>
+        <link href="{{url_for('static', filename='css/login_form.css')}}" rel="stylesheet" />
 </head>
 <body>
     {% with color=color %}
